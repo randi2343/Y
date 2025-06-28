@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Penjaga Hati</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    #container {
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+
+    #masukBtn {
+      padding: 15px 30px;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ffffff;
+      color: #333;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: 0.3s;
+    }
+
+    #masukBtn:hover {
+      background-color: #f0f0f0;
+      transform: scale(1.05);
+    }
+
+    #content {
+      display: none;
+      margin-top: 30px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    #romanticText {
+      font-size: 22px;
+      margin-top: 20px;
+      max-width: 500px;
+      margin: 20px auto 0;
+      line-height: 1.5;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="container">
+  <button id="masukBtn">Masuk</button>
+
+  <div id="content">
+    <h1>Selamat datang, Penjaga Hatiku 💖</h1>
+    <p>Lagu "Penjaga Hati" sedang diputar 🎶</p>
+    <div id="romanticText">
+      "Kau datang bukan hanya mengetuk pintu hatiku,<br>
+      tapi kau tinggal di sana tanpa permisi,<br>
+      dan sejak saat itu, aku tahu...<br>
+      hatiku hanya untukmu."
+    </div>
+  </div>
+
+  <!-- Ganti src dengan file lokal jika perlu -->
+  <audio id="audio" src="penjaga-hati.mp3" preload="auto"></audio>
+</div>
+
+<script>
+  const masukBtn = document.getElementById("masukBtn");
+  const content = document.getElementById("content");
+  const audio = document.getElementById("audio");
+
+  masukBtn.addEventListener("click", () => {
+    content.style.display = "block";
+    masukBtn.style.display = "none";
+
+    // Coba play audio
+    audio.play().then(() => {
+      console.log("Audio berhasil diputar.");
+    }).catch((error) => {
+      alert("Gagal memutar lagu. Silakan klik tombol lagi untuk memulai.");
+      console.error("Audio play error:", error);
+    });
+  });
+</script>
+
+</body>
+</html>
