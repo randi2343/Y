@@ -1,65 +1,281 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Menu Khusus WhatsApp</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Randi X Store</title>
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: Arial, sans-serif;
-      background: #f1f1f1;
-      padding: 20px;
+      background: url('https://files.catbox.moe/8hqd3z.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
       text-align: center;
+      padding: 40px 20px;
+      position: relative;
     }
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      display: inline-block;
+    #loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
     }
-    .highlight {
-      color: green;
+    #loader.fade-out {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+    .loader-text {
+      font-size: 1.5em;
       font-weight: bold;
+    }
+    #enter-text {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 4px black;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    #enter-button {
+      padding: 14px 30px;
+      font-size: 1.2em;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff8c00, #ff5722);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: pulse 2s infinite;
+      margin-bottom: 20px;
+    }
+    #enter-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+    .contact-admin-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      background: #25D366;
+      border-radius: 30px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 1em;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      animation: fadeIn 2s ease;
+    }
+    .contact-admin-btn img {
+      width: 24px;
+      height: 24px;
+    }
+    .contact-admin-btn:hover {
+      background: #128C7E;
+    }
+    #main-content {
+      display: none;
+      max-width: 650px;
+    }
+    #back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      z-index: 1000;
+    }
+    #back-button:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    .welcome {
+      background: rgba(0,0,0,0.65);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      backdrop-filter: blur(8px);
+    }
+    .welcome h1 {
+      font-size: 2.2em;
+      margin-bottom: 12px;
+    }
+    .welcome p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+    .bkin {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #ffd700;
+      text-shadow: 1px 1px 5px black;
+    }
+    .panel-list {
+      margin-top: 25px;
+      text-align: left;
+    }
+    .panel-list h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .panel-list ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .panel-list ul li {
+      margin-bottom: 10px;
+    }
+    .info-button {
+      margin-top: 20px;
+      background: linear-gradient(45deg, #03a9f4, #0d47a1);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .info-button:hover {
+      transform: scale(1.05);
+    }
+    #info-text {
+      margin-top: 15px;
+      display: none;
+      font-size: 0.95em;
+      background: rgba(0,0,0,0.5);
+      padding: 12px;
+      border-radius: 10px;
+      text-align: left;
+    }
+    .link-container {
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .btn-link {
+      background: linear-gradient(45deg, #25D366, #128C7E);
+      text-decoration: none;
+      display: inline-block;
+      padding: 14px;
+      border-radius: 10px;
+      font-weight: bold;
+      color: white;
+      font-size: 1em;
+    }
+    .btn-link:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      position: fixed;
+      bottom: 12px;
+      right: 16px;
+      font-size: 0.85em;
+      color: #fff;
+      background: rgba(0,0,0,0.3);
+      padding: 5px 10px;
+      border-radius: 8px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h2>Hai 👋</h2>
-    <p>Nomor WhatsApp kamu terdeteksi:</p>
-    <p class="highlight" id="nomor">Memuat...</p>
+  <div id="loader"><div class="loader-text">Loading...</div></div>
 
-    <hr>
+  <p id="enter-text">👋 Selamat datang di <strong>Randi X Store</strong><br>Klik tombol di bawah untuk melihat produk dan layanan kami!</p>
+  <button id="enter-button">🚀 Masuk</button>
 
-    <h3>Menu Produk</h3>
-    <ul style="text-align:left;">
-      <li>🔥 Produk A - Rp10.000</li>
-      <li>💎 Produk B - Rp25.000</li>
-      <li>🚀 Produk C - Rp50.000</li>
-    </ul>
+  <a class="contact-admin-btn" href="https://wa.me/6283867759076" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    Hubungi Admin
+  </a>
 
-    <button onclick="kirimKeBot()">Kirim ke Bot</button>
+  <audio id="background-music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mp3">
+    Browser Anda tidak mendukung audio.
+  </audio>
+
+  <div id="main-content">
+    <button id="back-button">← Kembali</button>
+    <div class="welcome">
+      <h1>Selamat Datang di Randi X Store</h1>
+      <p>Kami menyediakan berbagai <strong>reseller panel</strong> dan layanan digital terpercaya.</p>
+      <div class="bkin">💎 BKIN - Bukti Kita Itu Nyata</div>
+      <div class="panel-list">
+        <h2>📋 Daftar Panel & Harga</h2>
+        <ul>
+          <li>✔️ Panel V1 — <strong>Rp 5.000</strong> | 1GB: <strong>500p</strong></li>
+          <li>✔️ Panel V2 — <strong>Rp 8.000</strong> | 1GB: <strong>1K</strong></li>
+          <li>✔️ Panel V3 — <strong>Rp 10.000</strong> | 1GB: <strong>2K</strong></li>
+          <li>💻 Bikin Website — <strong>Rp 20.000</strong></li>
+          <li>🤖 Sewa Bot Harian — <strong>Rp 3.000</strong></li>
+        </ul>
+      </div>
+      <button class="info-button" onclick="toggleInfo()">❓ Info Perbedaan Panel</button>
+      <div id="info-text">
+        <p><strong>Panel V1:</strong> Untuk pemula & testing.</p>
+        <p><strong>Panel V2:</strong> Stabil & cocok reseller menengah.</p>
+        <p><strong>Panel V3:</strong> Performa tinggi & support prioritas.</p>
+      </div>
+    </div>
+    <div class="link-container">
+      <a class="btn-link" href="https://wa.me/6281998691221?text=Saya%20tertarik%20dengan%20Panel%20V1">📦 Beli Panel V1</a>
+      <a class="btn-link" href="https://wa.me/62881026232237?text=Saya%20tertarik%20dengan%20Panel%20V2">📦 Beli Panel V2</a>
+      <a class="btn-link" href="https://wa.me/6285361770989?text=Saya%20tertarik%20dengan%20Panel%20V3">📦 Beli Panel V3</a>
+    </div>
   </div>
 
+  <footer>© Randi Store</footer>
+
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const nomor = urlParams.get('nomor');
-    const elNomor = document.getElementById("nomor");
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      setTimeout(() => loader.classList.add('fade-out'), 1000);
+    });
 
-    if (nomor) {
-      elNomor.textContent = nomor;
-    } else {
-      elNomor.textContent = "Tidak ada nomor di URL";
-    }
+    document.getElementById('enter-button').addEventListener('click', () => {
+      document.getElementById('enter-button').style.display = 'none';
+      document.getElementById('enter-text').style.display = 'none';
+      document.querySelector('.contact-admin-btn').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+      document.getElementById('background-music').play().catch(() => {});
+    });
 
-    function kirimKeBot() {
-      if (!nomor) {
-        alert("Nomor tidak ditemukan!");
-        return;
-      }
-      window.location.href = `https://wa.me/${nomor}?text=Halo%20saya%20mau%20pesan%20produk`;
+    document.getElementById('back-button').addEventListener('click', () => {
+      document.getElementById('main-content').style.display = 'none';
+      document.getElementById('enter-button').style.display = 'inline-block';
+      document.getElementById('enter-text').style.display = 'block';
+      document.querySelector('.contact-admin-btn').style.display = 'inline-flex';
+    });
+
+    function toggleInfo() {
+      const info = document.getElementById('info-text');
+      info.style.display = info.style.display === 'none' ? 'block' : 'none';
     }
   </script>
 </body>
-  </html>
+      </html>
