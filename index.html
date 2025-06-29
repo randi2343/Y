@@ -1,24 +1,65 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>Randi X Store</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menu Khusus WhatsApp</title>
   <style>
     body {
-      background: url('https://files.catbox.moe/8hqd3z.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
+      font-family: Arial, sans-serif;
+      background: #f1f1f1;
+      padding: 20px;
       text-align: center;
-      padding: 50px;
     }
-    h1 { font-size: 2em; margin-bottom: 20px; }
-    p { font-size: 1.2em; }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+    }
+    .highlight {
+      color: green;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
-  <h1>Selamat Datang di Randi X Store</h1>
-  <p>Website ini sudah siap di-deploy ke GitHub Pages tanpa error.</p>
+  <div class="card">
+    <h2>Hai 👋</h2>
+    <p>Nomor WhatsApp kamu terdeteksi:</p>
+    <p class="highlight" id="nomor">Memuat...</p>
+
+    <hr>
+
+    <h3>Menu Produk</h3>
+    <ul style="text-align:left;">
+      <li>🔥 Produk A - Rp10.000</li>
+      <li>💎 Produk B - Rp25.000</li>
+      <li>🚀 Produk C - Rp50.000</li>
+    </ul>
+
+    <button onclick="kirimKeBot()">Kirim ke Bot</button>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const nomor = urlParams.get('nomor');
+    const elNomor = document.getElementById("nomor");
+
+    if (nomor) {
+      elNomor.textContent = nomor;
+    } else {
+      elNomor.textContent = "Tidak ada nomor di URL";
+    }
+
+    function kirimKeBot() {
+      if (!nomor) {
+        alert("Nomor tidak ditemukan!");
+        return;
+      }
+      window.location.href = `https://wa.me/${nomor}?text=Halo%20saya%20mau%20pesan%20produk`;
+    }
+  </script>
 </body>
-</html>
+  </html>
