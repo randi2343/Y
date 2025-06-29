@@ -1,3 +1,37 @@
+esifikasi server, kestabilan, fitur bawaan, serta harga operasional yang tidak sama. Panel V3 memiliki performa dan fitur terbaik dibanding V1 dan V2, sehingga harganya sedikit lebih tinggi.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="link-container">
+      <a class="btn-link" href="https://wa.me/62881026232237?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20Panel%20V1." target="_blank">📦 Beli Panel V1</a>
+      <a class="btn-link" href="https://wa.me/6281998691221?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20Panel%20V2." target="_blank">📦 Beli Panel V2</a>
+      <a class="btn-link" href="https://wa.me/6283867759076?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20Panel%20V3." target="_blank">📦 Beli Panel V3</a>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    document.getElementById('enter-button').addEventListener('click', function () {
+      document.getElementById('enter-button').style.display = 'none';
+      document.querySelector('.contact-admin-btn').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+
+      var audio = document.getElementById('background-music');
+      audio.play().catch(function(error) {
+        console.log("Pemutaran otomatis diblokir oleh browser: ", error);
+      });
+    });
+
+    document.getElementById('baca-alasan-btn').addEventListener('click', function () {
+      var panelInfo = document.getElementById('penjelasan-panel');
+      panelInfo.style.display = (panelInfo.style.display === 'none') ? 'block' : 'none';
+    });
+  </script>
+
+</body>
+          </html>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -12,7 +46,7 @@
     }
 
     body {
-      background: url('https://files.catbox.moe/8hqd3z.jpg') no-repeat center center fixed;
+      background: url('https://files.catbox.moe/5gdcqa.jpg') no-repeat center center fixed;
       background-size: cover;
       min-height: 100vh;
       color: white;
