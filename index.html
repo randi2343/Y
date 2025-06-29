@@ -12,7 +12,7 @@
     }
 
     body {
-      background: url('https://files.catbox.moe/5gdcqa.jpg') no-repeat center center fixed;
+      background: url('https://files.catbox.moe/8hqd3z.jpg') no-repeat center center fixed;
       background-size: cover;
       min-height: 100vh;
       color: white;
@@ -144,33 +144,6 @@
       transform: scale(1.05);
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
-
-    #baca-alasan-btn {
-      padding: 10px 25px;
-      background: linear-gradient(45deg, #2196f3, #1e88e5);
-      border: none;
-      border-radius: 10px;
-      color: white;
-      font-size: 1em;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-      margin-top: 20px;
-    }
-
-    #baca-alasan-btn:hover {
-      transform: scale(1.05);
-    }
-
-    #penjelasan-panel {
-      display: none;
-      margin-top: 15px;
-      background: rgba(0,0,0,0.6);
-      padding: 15px 20px;
-      border-radius: 10px;
-      font-size: 0.95em;
-      line-height: 1.5;
-    }
   </style>
 </head>
 <body>
@@ -207,14 +180,6 @@
           <li>✔️ Reseller Panel V3 — <strong>Rp10.000</strong> (ADP: Rp15.000)</li>
           <li style="margin-left: 20px;">▫️ Panel V3 1GB — <strong>2k</strong></li>
         </ul>
-
-        <!-- Tombol dan Penjelasan Panel -->
-        <div style="text-align: center;">
-          <button id="baca-alasan-btn">❓ Baca Kenapa Panel Berbeda</button>
-          <div id="penjelasan-panel">
-            Panel berbeda karena memiliki spesifikasi server, kestabilan, fitur bawaan, serta harga operasional yang tidak sama. Panel V3 memiliki performa dan fitur terbaik dibanding V1 dan V2, sehingga harganya sedikit lebih tinggi.
-          </div>
-        </div>
       </div>
     </div>
 
@@ -222,10 +187,10 @@
       <a class="btn-link" href="https://wa.me/62881026232237?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20Panel%20V1." target="_blank">📦 Beli Panel V1</a>
       <a class="btn-link" href="https://wa.me/6281998691221?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20Panel%20V2." target="_blank">📦 Beli Panel V2</a>
       <a class="btn-link" href="https://wa.me/6283867759076?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20Panel%20V3." target="_blank">📦 Beli Panel V3</a>
+      <a class="btn-link" href="https://chat.whatsapp.com/GrupLinkContoh" target="_blank">📣 Gabung Grup 1</a>
     </div>
   </div>
 
-  <!-- Script -->
   <script>
     document.getElementById('enter-button').addEventListener('click', function () {
       document.getElementById('enter-button').style.display = 'none';
@@ -236,11 +201,6 @@
       audio.play().catch(function(error) {
         console.log("Pemutaran otomatis diblokir oleh browser: ", error);
       });
-    });
-
-    document.getElementById('baca-alasan-btn').addEventListener('click', function () {
-      var panelInfo = document.getElementById('penjelasan-panel');
-      panelInfo.style.display = (panelInfo.style.display === 'none') ? 'block' : 'none';
     });
   </script>
 
