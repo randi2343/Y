@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -5,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Randi X Store</title>
   <style>
-    body, input, textarea, select, button {
-      font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Apple Color Emoji", "Segoe UI", sans-serif;
+    body, input, button {
+      font-family: "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI", sans-serif;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -24,46 +25,125 @@
     #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; justify-content: center; align-items: center; z-index: 9999; }
     #loader.fade-out { opacity: 0; pointer-events: none; transition: opacity 0.8s ease; }
     .loader-text { font-size: 1.5em; font-weight: bold; }
-    #enter-text { font-size: 1.2em; margin-bottom: 20px; text-shadow: 1px 1px 4px black; animation: fadeIn 1.5s ease-in-out; }
+    #enter-text {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 4px black;
+      animation: fadeIn 1.5s ease-in-out;
+    }
     #enter-button {
-      padding: 14px 30px; font-size: 1.2em; font-weight: bold;
-      background: linear-gradient(45deg, #ff8c00, #ff5722); color: white;
-      border: none; border-radius: 12px; cursor: pointer;
+      padding: 14px 30px;
+      font-size: 1.2em;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff8c00, #ff5722);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
       box-shadow: 0 6px 18px rgba(0,0,0,0.4);
-      transition: transform 0.3s, box-shadow 0.3s;
-      animation: pulse 2s infinite; margin-bottom: 20px;
+      animation: pulse 2s infinite;
+      margin-bottom: 20px;
     }
     #enter-button:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-    .contact-admin-btn { display: inline-flex; align-items: center; gap: 10px; padding: 10px 20px; background: #25D366; border-radius: 30px; text-decoration: none; color: white; font-weight: bold; font-size: 1em; box-shadow: 0 4px 12px rgba(0,0,0,0.3); animation: fadeIn 2s ease; }
+    .contact-admin-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      background: #25D366;
+      border-radius: 30px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 1em;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      animation: fadeIn 2s ease;
+    }
     .contact-admin-btn img { width: 24px; height: 24px; }
     .contact-admin-btn:hover { background: #128C7E; }
-    .comment-section { margin-top: 30px; width: 100%; max-width: 650px; background: rgba(0,0,0,0.6); padding: 20px; border-radius: 16px; backdrop-filter: blur(8px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
-    .comment-section h2 { margin-bottom: 10px; }
-    form input, form textarea, form select { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 10px; border-radius: 8px; font-size: 1em; }
-    .info-button { margin-top: 10px; background: linear-gradient(45deg, #03a9f4, #0d47a1); color: white; padding: 12px 20px; border: none; border-radius: 10px; font-size: 1em; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-    .info-button:hover { transform: scale(1.05); }
-    #comments-container div { background: rgba(255,255,255,0.08); padding: 10px; border-radius: 10px; margin-top: 10px; text-align: left; }
     #main-content { display: none; max-width: 700px; }
-    #back-button { position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.6); color: white; border: none; padding: 10px 18px; border-radius: 10px; font-size: 1em; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.4); z-index: 1000; }
+    #back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      z-index: 1000;
+    }
     #back-button:hover { background: rgba(255,255,255,0.1); }
-    .welcome { background: rgba(0,0,0,0.65); padding: 30px; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.4); backdrop-filter: blur(8px); }
+    .welcome {
+      background: rgba(0,0,0,0.65);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      backdrop-filter: blur(8px);
+    }
     .welcome h1 { font-size: 2.2em; margin-bottom: 12px; }
     .welcome p { font-size: 1.1em; margin-bottom: 20px; }
-    .bkin { font-size: 1.2em; font-weight: bold; color: #ffd700; text-shadow: 1px 1px 5px black; }
+    .bkin {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #ffd700;
+      text-shadow: 1px 1px 5px black;
+      margin-bottom: 10px;
+    }
     .panel-list { margin-top: 25px; text-align: left; }
     .panel-list h2 { text-align: center; margin-bottom: 10px; }
     .panel-list ul { list-style: none; padding-left: 0; }
     .panel-list ul li { margin-bottom: 10px; }
-    #info-text { margin-top: 15px; display: none; font-size: 0.95em; background: rgba(0,0,0,0.5); padding: 12px; border-radius: 10px; text-align: left; }
-    .link-container { margin-top: 25px; display: flex; flex-direction: column; gap: 15px; }
-    .btn-link { background: linear-gradient(45deg, #25D366, #128C7E); text-decoration: none; display: inline-block; padding: 14px; border-radius: 10px; font-weight: bold; color: white; font-size: 1em; }
+    .info-button {
+      margin-top: 10px;
+      background: linear-gradient(45deg, #03a9f4, #0d47a1);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .info-button:hover { transform: scale(1.05); }
+    #info-text {
+      margin-top: 15px;
+      display: none;
+      font-size: 0.95em;
+      background: rgba(0,0,0,0.5);
+      padding: 12px;
+      border-radius: 10px;
+      text-align: left;
+    }
+    .link-container {
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .btn-link {
+      background: linear-gradient(45deg, #25D366, #128C7E);
+      text-decoration: none;
+      display: inline-block;
+      padding: 14px;
+      border-radius: 10px;
+      font-weight: bold;
+      color: white;
+      font-size: 1em;
+    }
     .btn-link:hover { transform: scale(1.05); }
-    footer { position: fixed; bottom: 12px; right: 16px; font-size: 0.85em; color: #fff; background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 8px; }
-    #admin-login-btn {
-      position: fixed; top: 10px; right: 10px; z-index: 1001;
-      background: #0f0; color: #000; padding: 8px 12px;
-      font-weight: bold; border: none; border-radius: 8px;
-      cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    footer {
+      position: fixed;
+      bottom: 12px;
+      right: 16px;
+      font-size: 0.85em;
+      color: #fff;
+      background: rgba(0,0,0,0.3);
+      padding: 5px 10px;
+      border-radius: 8px;
     }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
@@ -71,34 +151,24 @@
 </head>
 <body>
 
-<button id="admin-login-btn" onclick="adminLogin()">ЁЯФС Admin Masuk</button>
+<div id="loader"><div class="loader-text">⏳ Memuat...</div></div>
 
-<div id="loader"><div class="loader-text">Loading...</div></div>
-
-<p id="enter-text">ЁЯСЛ Selamat datang di <strong>Randi X Store</strong><br>Klik tombol di bawah untuk melihat produk dan layanan kami!</p>
-<button id="enter-button">Masuk</button>
+<p id="enter-text">👋 Selamat datang di <strong>Randi X Store</strong><br>Klik tombol di bawah untuk melihat produk dan layanan kami!</p>
+<button id="enter-button">🚀 Masuk</button>
 
 <a class="contact-admin-btn" href="https://wa.me/6283867759076" target="_blank">
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
-  Hubungi Admin
+  💬 Hubungi Admin
 </a>
 
-<div class="comment-section">
-  <h2>Beri Komentar & Rating</h2>
-  <form id="rating-form" style="display: flex; flex-direction: column; gap: 10px;">
-    <input type="text" id="name" placeholder="Nama Anda" required>
-    <textarea id="comment" placeholder="Komentar Anda" required></textarea>
-    <select id="rating" required>
-      <option value="">Pilih Rating Bintang</option>
-      <option value="тнР">тнР</option>
-      <option value="тнРтнР">тнРтнР</option>
-      <option value="тнРтнРтнР">тнРтнРтнР</option>
-      <option value="тнРтнРтнРтнР">тнРтнРтнРтнР</option>
-      <option value="тнРтнРтнРтнРтнР">тнРтнРтнРтнРтнР</option>
-    </select>
-    <button type="submit" class="info-button">Kirim</button>
-  </form>
-  <div id="comments-container"></div>
+<!-- 🖼️ Bukti Testimoni -->
+<div class="welcome" style="margin-top: 30px;">
+  <h2>🖼️ Bukti Testimoni "Moni"</h2>
+  <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 15px;">
+    <img src="https://files.catbox.moe/a1xxyz.jpg" alt="Testimoni dari pelanggan Moni - 1" style="width: 150px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.4);" />
+    <img src="https://files.catbox.moe/b2yabc.jpg" alt="Testimoni dari pelanggan Moni - 2" style="width: 150px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.4);" />
+    <img src="https://files.catbox.moe/c3z123.jpg" alt="Testimoni dari pelanggan Moni - 3" style="width: 150px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.4);" />
+  </div>
 </div>
 
 <audio id="background-music" loop>
@@ -106,93 +176,41 @@
 </audio>
 
 <div id="main-content">
-  <button id="back-button">тЖР Kembali</button>
+  <button id="back-button">🔙 Kembali</button>
   <div class="welcome">
-    <h1>Selamat Datang di Randi X Store</h1>
-    <p>Kami menyediakan berbagai <strong>reseller panel</strong> dan layanan digital terpercaya.</p>
-    <div class="bkin">ЁЯТО BKIN - Bukti Kita Itu Nyata</div>
+    <h1>🎉 Selamat Datang di Randi X Store</h1>
+    <p>Kami menyediakan berbagai <strong>reseller panel</strong> dan layanan digital terpercaya ⚡.</p>
+    <div class="bkin">🔥 BKIN - Bukti Kita Itu Nyata 🔥</div>
     <div class="panel-list">
-      <h2>ЁЯУЛ Daftar Panel & Harga</h2>
+      <h2>🛒 Daftar Panel & Harga</h2>
       <ul>
-        <li>тЬФя╕П Admin Panel V1 тАФ <strong>Rp 8.000</strong> | 1GB: <strong>500p</strong></li>
-        <li>тЬФя╕П Admin Panel V2 тАФ <strong>Rp 10.000</strong> | 1GB: <strong>1K</strong></li>
-        <li>тЬФя╕П Admin Panel V3 тАФ <strong>Rp 15.000</strong> | 1GB: <strong>2K</strong></li>
-        <li>тЬФя╕П Raseller Panel V1 тАФ <strong>Rp 5.000</strong></li>
-        <li>тЬФя╕П Raseller Panel V2 тАФ <strong>Rp 8.000</strong></li>
-        <li>тЬФя╕П Raseller Panel V1 тАФ <strong>Rp 10.000</strong></li>
-        <li>ЁЯТ╗ Bikin Website тАФ <strong>Rp 20.000</strong></li>
-        <li>ЁЯдЦ Sewa Bot Harian тАФ <strong>Rp 3.000</strong></li>
+        <li>🧩 Admin Panel V1 – <strong>Rp 8.000</strong> | 1GB: <strong>500p</strong></li>
+        <li>🧩 Admin Panel V2 – <strong>Rp 10.000</strong> | 1GB: <strong>1K</strong></li>
+        <li>🧩 Admin Panel V3 – <strong>Rp 15.000</strong> | 1GB: <strong>2K</strong></li>
+        <li>🛍️ Reseller Panel V1 – <strong>Rp 5.000</strong></li>
+        <li>🛍️ Reseller Panel V2 – <strong>Rp 8.000</strong></li>
+        <li>🛍️ Reseller Panel V3 – <strong>Rp 10.000</strong></li>
+        <li>🌐 Bikin Website – <strong>Rp 20.000</strong></li>
+        <li>🤖 Sewa Bot Harian – <strong>Rp 3.000</strong></li>
       </ul>
-      <button class="info-button" onclick="toggleInfo()">тЭУ Info Perbedaan Panel</button>
+      <button class="info-button" onclick="toggleInfo()">ℹ️ Info Perbedaan Panel</button>
       <div id="info-text">
-        <p><strong>PanelV1:</strong> Untuk pemula & testing.</p>
-        <p><strong>PanelV2:</strong> Stabil & cocok reseller menengah.</p>
-        <p><strong>PanelV3:</strong> Performa tinggi & support prioritas.</p>
+        <p><strong>Panel V1:</strong> Untuk pemula & testing.</p>
+        <p><strong>Panel V2:</strong> Stabil & cocok reseller menengah.</p>
+        <p><strong>Panel V3:</strong> Performa tinggi & support prioritas.</p>
       </div>
     </div>
   </div>
   <div class="link-container">
-    <a class="btn-link" href="https://wa.me/6281998691221?text=Saya%20Mau%20Beli%20Sesuatu">ЁЯУж Beli Panel V1</a>
-    <a class="btn-link" href="https://wa.me/62881026232237?text=Saya%20Mau%20Beli%20Sesuatu">ЁЯУж Beli Panel V2</a>
-    <a class="btn-link" href="https://wa.me/6285361770989?text=Saya%20Mau%20Beli%20Sesuatu">ЁЯУж Beli Panel V3</a>
+    <a class="btn-link" href="https://wa.me/6281998691221?text=Saya%20mau%20beli%20Panel%20V1">🛒 Beli Panel V1</a>
+    <a class="btn-link" href="https://wa.me/62881026232237?text=Saya%20mau%20beli%20Panel%20V2">🛒 Beli Panel V2</a>
+    <a class="btn-link" href="https://wa.me/6285361770989?text=Saya%20mau%20beli%20Panel%20V3">🛒 Beli Panel V3</a>
   </div>
 </div>
 
-<footer>┬й Randi Store</footer>
+<footer>© Randi Store ✨</footer>
 
 <script>
-let isAdmin = false;
-
-function adminLogin() {
-  const username = prompt("Masukkan Username Admin:");
-  const password = prompt("Masukkan Password Admin:");
-  if (username === "admin" && password === "12345") {
-    isAdmin = true;
-    alert("Login Admin Berhasil тЬЕ");
-    showReplyForms();
-  } else {
-    alert("Login Gagal тЭМ");
-  }
-}
-
-function showReplyForms() {
-  document.querySelectorAll('.comment-item').forEach(item => {
-    if (!item.querySelector('textarea')) {
-      const replyBox = document.createElement('div');
-      replyBox.innerHTML = `
-        <textarea placeholder="Balas sebagai admin..." class="admin-reply" style="width:100%;margin-top:5px;border-radius:8px;padding:8px;"></textarea>
-        <button onclick="sendReply(this)" style="margin-top:5px;background:#0f0;border:none;border-radius:6px;padding:6px 10px;color:#000;font-weight:bold;cursor:pointer;">Kirim Balasan</button>
-      `;
-      item.appendChild(replyBox);
-    }
-  });
-}
-
-function sendReply(button) {
-  const replyText = button.previousElementSibling.value.trim();
-  if (replyText !== "") {
-    const replyDisplay = document.createElement('div');
-    replyDisplay.innerHTML = `<span style="color:#0f0;">ЁЯТм Balasan Admin:</span> ${replyText}`;
-    button.parentElement.appendChild(replyDisplay);
-    button.previousElementSibling.remove();
-    button.remove();
-  }
-}
-
-document.getElementById('rating-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const name = document.getElementById('name').value;
-  const comment = document.getElementById('comment').value;
-  const rating = document.getElementById('rating').value;
-  const container = document.getElementById('comments-container');
-  const newComment = document.createElement('div');
-  newComment.classList.add('comment-item');
-  newComment.innerHTML = `<strong>${name}</strong> (${rating})<br>${comment}`;
-  container.prepend(newComment);
-  if (isAdmin) showReplyForms();
-  this.reset();
-});
-
 function toggleInfo() {
   const info = document.getElementById('info-text');
   info.style.display = info.style.display === 'none' ? 'block' : 'none';
@@ -202,7 +220,6 @@ document.getElementById('enter-button').addEventListener('click', () => {
   document.getElementById('enter-button').style.display = 'none';
   document.getElementById('enter-text').style.display = 'none';
   document.querySelector('.contact-admin-btn').style.display = 'none';
-  document.querySelector('.comment-section').style.display = 'none';
   document.getElementById('main-content').style.display = 'block';
   document.getElementById('background-music').play().catch(() => {});
 });
@@ -212,7 +229,6 @@ document.getElementById('back-button').addEventListener('click', () => {
   document.getElementById('enter-button').style.display = 'inline-block';
   document.getElementById('enter-text').style.display = 'block';
   document.querySelector('.contact-admin-btn').style.display = 'inline-flex';
-  document.querySelector('.comment-section').style.display = 'block';
 });
 
 window.addEventListener('load', () => {
